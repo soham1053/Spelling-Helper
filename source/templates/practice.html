@@ -1,119 +1,212 @@
-{% extends 'base.html' %}
-{% block title %}
-Practice
-{% endblock title %}
-{% block body %}
+{% extends 'base.html' %} {% block title %} Practice {% endblock title %} {%
+block body %}
+{% block static %}
+<style>
+  #wordBoxes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #wordBoxes p {
+    display: block;
+    border: 3px solid black;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  #wordBoxes p:hover {
+    border: 3px solid lightgreen;
+  }
+
+</style>
+{% endblock static %}
 <h1>Practice</h1>
 <button class="btn btn-primary" id="clearButton">
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-</svg></button>
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 16 16"
+    class="bi bi-trash-fill"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"
+    />
+  </svg>
+</button>
 <button class="btn btn-primary" id="pencilButton">
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-    <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-  </svg></button>
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 16 16"
+    class="bi bi-pencil"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"
+    />
+    <path
+      fill-rule="evenodd"
+      d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"
+    />
+  </svg>
+</button>
 <button class="btn btn-primary" id="eraserButton">
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 16 16"
+    class="bi bi-backspace-fill"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"
+    />
   </svg>
 </button>
 <button class="btn btn-primary" id="submitButton">
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-    </svg>
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 16 16"
+    class="bi bi-check2"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+    />
+  </svg>
 </button>
 
 <div id="canvas_div" class="text-center">
-	<h1>Spell the correct letter</h1>
-	<canvas id="canvas" width="500" height="500" style="border: 2px solid #000000"></canvas>
+  <h1>Spell the correct letter</h1>
+  <canvas
+    id="canvas"
+    width="500"
+    height="500"
+    style="border: 2px solid #000000;"
+  ></canvas>
 </div>
+<h2 style="text-align: center;">Completed Letters</h2>
+<div id="wordBoxes"></div>
+
 <script>
-var eraserActive = false;
-document.getElementById("clearButton").onclick = function() {clearCanvas()};
-document.getElementById("pencilButton").onclick = function() {eraserActive = false};
-document.getElementById("eraserButton").onclick = function() {eraserActive = true};
-document.getElementById("submitButton").onclick = function() {submit()};
-var width=500, height=500;
-function clearCanvas() {
+  var currentBox = 1;
+  
+  var word = "HELLO";
+
+  var wordBoxes = document.getElementById("wordBoxes")
+  for (var letter of word) {
+    var box = document.createElement("p")
+    box.innerHTML = letter;
+    wordBoxes.appendChild(box);
+  }
+
+  var eraserActive = false;
+  document.getElementById("clearButton").onclick = function () {
+    clearCanvas();
+  };
+  document.getElementById("pencilButton").onclick = function () {
+    eraserActive = false;
+  };
+  document.getElementById("eraserButton").onclick = function () {
+    eraserActive = true;
+  };
+  document.getElementById("submitButton").onclick = function () {
+    submit();
+  };
+  var width = 500,
+    height = 500;
+  function clearCanvas() {
     var canvas = {};
-    canvas.node = document.getElementById("canvas")
-    canvas.context = canvas.node.getContext('2d');
+    canvas.node = document.getElementById("canvas");
+    canvas.context = canvas.node.getContext("2d");
     var ctx = canvas.context;
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, width, height);
-}
-function submit() {
+  }
+  function submit() {
     var canvas = {};
-    canvas.node = document.getElementById("canvas")
-    canvas.context = canvas.node.getContext('2d');
+    canvas.node = document.getElementById("canvas");
+    canvas.context = canvas.node.getContext("2d");
     var ctx = canvas.context;
     var dataURL = canvas.node.toDataURL();
     $.ajax({
-        type: "POST",
-        url: "/submit",
-        data: {
-            imageBase64: dataURL
-        }
-    }).done(function() {
-        console.log('Sent canvas image to server');
+      type: "POST",
+      url: "/submit",
+      data: {
+        imageBase64: dataURL,
+      },
+    }).done(function () {
+      console.log("Sent canvas image to server");
     });
-}
-function createCanvas(width, height) {
-        var canvas = {};
-        canvas.node = document.getElementById("canvas")
-        canvas.context = canvas.node.getContext('2d');
-        return canvas;
-    }
-(function() {
+  }
+  function createCanvas(width, height) {
+    var canvas = {};
+    canvas.node = document.getElementById("canvas");
+    canvas.context = canvas.node.getContext("2d");
+    return canvas;
+  }
+  (function () {
     // Creates a new canvas element and appends it as a child
     // to the parent element, and returns the reference to
     // the newly created canvas element
 
     function init(container, width, height, fillColor) {
-        var canvas = createCanvas(width, height);
-        var ctx = canvas.context;
-        // define a custom fillCircle method
-        ctx.fillCircle = function(x, y, radius, fillColor) {
-            this.fillStyle = fillColor;
-            this.beginPath();
-            this.moveTo(x, y);
-            this.arc(x, y, radius, 0, Math.PI * 2, false);
-            this.fill();
-        };
-        ctx.clearTo = function(fillColor) {
-            ctx.fillStyle = fillColor;
-            ctx.fillRect(0, 0, width, height);
-        };
-        ctx.clearTo(fillColor || "#ddd");
+      var canvas = createCanvas(width, height);
+      var ctx = canvas.context;
+      // define a custom fillCircle method
+      ctx.fillCircle = function (x, y, radius, fillColor) {
+        this.fillStyle = fillColor;
+        this.beginPath();
+        this.moveTo(x, y);
+        this.arc(x, y, radius, 0, Math.PI * 2, false);
+        this.fill();
+      };
+      ctx.clearTo = function (fillColor) {
+        ctx.fillStyle = fillColor;
+        ctx.fillRect(0, 0, width, height);
+      };
+      ctx.clearTo(fillColor || "#ddd");
 
-        // bind mouse events
-        canvas.node.onmousemove = function(e) {
-            if (!canvas.isDrawing) {
-               return;
-            }
-            var x = e.pageX - this.offsetLeft;
-            var y = e.pageY - this.offsetTop;
-            var radius = 40; // or whatever
-            var fillColor;
-            if (eraserActive) {
-                fillColor = '#ffffff'
-            } else {
-                fillColor = '#000000'
-            }
-            ctx.fillCircle(x, y, radius, fillColor);
-        };
-        canvas.node.onmousedown = function(e) {
-            canvas.isDrawing = true;
-        };
-        canvas.node.onmouseup = function(e) {
-            canvas.isDrawing = false;
-        };
+      // bind mouse events
+      canvas.node.onmousemove = function (e) {
+        if (!canvas.isDrawing) {
+          return;
+        }
+        var x = e.pageX - this.offsetLeft;
+        var y = e.pageY - this.offsetTop;
+        var radius = 40; // or whatever
+        var fillColor;
+        if (eraserActive) {
+          fillColor = "#ffffff";
+        } else {
+          fillColor = "#000000";
+        }
+        ctx.fillCircle(x, y, radius, fillColor);
+      };
+      canvas.node.onmousedown = function (e) {
+        canvas.isDrawing = true;
+      };
+      canvas.node.onmouseup = function (e) {
+        canvas.isDrawing = false;
+      };
     }
 
-    var container = document.getElementById('canvas_div');
-    init(container, 500, 500, '#ffffff');
-
-})();
+    var container = document.getElementById("canvas_div");
+    init(container, 500, 500, "#ffffff");
+  })();
 </script>
 {% endblock body %}

@@ -1,17 +1,25 @@
-{% extends 'base.html' %}
-{% block title %}
-Signup
-{% endblock title %}
-{% block body %}
+{% extends 'base.html' %} {% block title %} Signup {% endblock title %} {% block
+body %}
 <h1>Signup</h1>
 <form method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
-    <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input
+      name="username"
+      type="text"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+    />
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input name="ps" type="password" class="form-control" id="exampleInputPassword1">
+    <input
+      name="ps"
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+    />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
