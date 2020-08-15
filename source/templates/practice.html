@@ -22,6 +22,9 @@ block body %}
     border: 3px solid lightgreen;
   }
 
+  #wordBoxes p.wordBoxCurrent {
+    border: 3px solid green;
+  }
 </style>
 {% endblock static %}
 <h1>Practice</h1>
@@ -100,18 +103,47 @@ block body %}
   ></canvas>
 </div>
 <h2 style="text-align: center;">Completed Letters</h2>
-<div id="wordBoxes"></div>
+<div id="wordBoxes">
+  <p id="wordBox1" class="wordBoxCurrent"></p>
+</div>
 
 <script>
   var currentBox = 1;
-  
-  var word = "HELLO";
+  var totalBoxes = 1;
 
-  var wordBoxes = document.getElementById("wordBoxes")
-  for (var letter of word) {
-    var box = document.createElement("p")
+  function insertLetter(letter) {
+    var wordBoxes = document.getElementById("wordBoxes");
+    var box = document.getElementById("wordBox" + currentBox);
     box.innerHTML = letter;
-    wordBoxes.appendChild(box);
+    switchToBox(currentBox + 1);
+  }
+
+  function switchToBox(index) {
+    var oldBox = document.getElementById("wordBox" + currentBox);
+    oldBox.classList.remove("wordBoxCurrent");
+    currentBox = index;
+    if (index == (totalBoxes + 1)) {
+      var newBox = document.createElement("p");
+      newBox.id = "wordBox" + index;
+      wordBoxes.appendChild(newBox);
+      totalBoxes ++;
+    }
+    var box = document.getElementById("wordBox" + index);
+    box.classList.add("wordBoxCurrent");
+  }
+
+  function deleteLastBox() {
+    if (totalBoxes <= 1) {
+      return;
+    }
+    if (currentBox == totalBoxes) {
+      switchToBox(currentBox - 1);
+    }
+    var lastBox = document.getElementById("wordBox" + totalBoxes);
+    lastBox.parentNode.removeChild(lastBox)
+    totalBoxes --;
+    var box = document.getElementById("wordBox" + totalBoxes);
+    box.innerHTML = "";
   }
 
   var eraserActive = false;
