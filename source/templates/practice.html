@@ -104,7 +104,7 @@ block body %}
 </div>
 <h2 style="text-align: center;">Completed Letters</h2>
 <div id="wordBoxes">
-  <p id="wordBox1" class="wordBoxCurrent"></p>
+  <p id="wordBox1" class="wordBoxCurrent" onclick="switchToBox(1)"></p>
 </div>
 
 <script>
@@ -119,12 +119,19 @@ block body %}
   }
 
   function switchToBox(index) {
+    if (currentBox == index) {
+      return;
+    }
+    clearCanvas();
     var oldBox = document.getElementById("wordBox" + currentBox);
     oldBox.classList.remove("wordBoxCurrent");
     currentBox = index;
     if (index == (totalBoxes + 1)) {
       var newBox = document.createElement("p");
       newBox.id = "wordBox" + index;
+      newBox.onclick = function() {
+        switchToBox(index);
+      }
       wordBoxes.appendChild(newBox);
       totalBoxes ++;
     }
