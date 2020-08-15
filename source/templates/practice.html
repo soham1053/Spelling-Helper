@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+Practice
+{% endblock title %}
+{% block body %}
+<h1>Practice</h1>
+<div id="canvas_div" class="text-center">
+	<h1>Spell the correct letter</h1>
+	<canvas id="canvas" width="500" height="500" style="border: 2px solid #000000"></canvas>
+</div>
+<script>
+(function() {
+    // Creates a new canvas element and appends it as a child
+    // to the parent element, and returns the reference to
+    // the newly created canvas element
+
+
+    function createCanvas(parent, width, height) {
+        var canvas = {};
+        canvas.node = document.getElementById("canvas")
+        canvas.context = canvas.node.getContext('2d');
+        return canvas;
+    }
+
+    function init(container, width, height, fillColor) {
+        var canvas = createCanvas(container, width, height);
+        var ctx = canvas.context;
+        // define a custom fillCircle method
+        ctx.fillCircle = function(x, y, radius, fillColor) {
+            this.fillStyle = fillColor;
+            this.beginPath();
+            this.moveTo(x, y);
+            this.arc(x, y, radius, 0, Math.PI * 2, false);
+            this.fill();
+        };
+        ctx.clearTo = function(fillColor) {
+            ctx.fillStyle = fillColor;
+            ctx.fillRect(0, 0, width, height);
+        };
+        ctx.clearTo(fillColor || "#ddd");
+
+        // bind mouse events
+        canvas.node.onmousemove = function(e) {
+            if (!canvas.isDrawing) {
+               return;
+            }
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            var radius = 40; // or whatever
+            var fillColor = '#000000';
+            ctx.fillCircle(x, y, radius, fillColor);
+        };
+        canvas.node.onmousedown = function(e) {
+            canvas.isDrawing = true;
+        };
+        canvas.node.onmouseup = function(e) {
+            canvas.isDrawing = false;
+        };
+    }
+
+    var container = document.getElementById('canvas_div');
+    init(container, 500, 500, '#ffffff');
+
+})();
+</script>
+{% endblock body %}

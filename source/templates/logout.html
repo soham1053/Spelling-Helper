@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+Logout
+{% endblock title %}
+{% block body %}
+<h1>Logout</h1>
+<h2>Currently Signed in as {{username}}</h2>
+<form method="post">
+  <button type="submit" class="btn btn-primary">Logout</button>
+</form>
+{% endblock body %}
