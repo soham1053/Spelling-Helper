@@ -9,6 +9,9 @@ def signup():
 		username = request.form["username"]
 		password = request.form["ps"]
 
+		if len(query(f"SELECT * FROM users WHERE username='{username}'")) > 0:
+			return render_template("signup.html")
+
 		hashed_pass = password.encode()
 		hashed_pass = bcrypt.hashpw(hashed_pass, bcrypt.gensalt(14))		
 		query(f"INSERT INTO users (username, password) VALUES ('{username}', '{hashed_pass.decode('utf-8')}')")
