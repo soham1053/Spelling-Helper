@@ -8,3 +8,7 @@ dev.txt
 
 database.sqlite
 *.npy
+
+letters_model/
+
+.vsls.json
