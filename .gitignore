@@ -6,7 +6,6 @@ dev.txt
 
 .vscode/
 
-database.sqlite
 *.npy
 
 letters_model/
