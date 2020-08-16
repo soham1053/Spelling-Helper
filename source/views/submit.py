@@ -24,8 +24,4 @@ def submit():
 	np_img = abs(np_img - 255)
 
 	pred = chr(model.predict(np_img[:,:,0].reshape(1, 28, 28, 1)).argmax()+97)
-
-	print(f"Predicted Letter: {pred}")
-
-	# print('Image received: {}'.format(image_np.shape)) # Prints out: Image received: (500, 500, 4)
 	return pred
