@@ -2,11 +2,12 @@
 block body %}
 {% block static %}
 <style>
-  #wordBoxes {
+  #wordBoxesContainer, #wordBoxes {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  
   #wordBoxes p {
     display: block;
     border: 3px solid black;
@@ -102,9 +103,25 @@ block body %}
     style="border: 2px solid #000000;"
   ></canvas>
 </div>
-<h2 style="text-align: center;">Completed Letters</h2>
-<div id="wordBoxes">
-  <p id="wordBox1" class="wordBoxCurrent" onclick="switchToBox(1)"></p>
+<div id="wordBoxesContainer">
+  <div id="wordBoxes">
+    <p id="wordBox1" class="wordBoxCurrent" onclick="switchToBox(1)"></p>
+  </div>
+  <div onclick="deleteLastBox()">
+    <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 16 16"
+    class="bi bi-backspace-fill"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"
+    />
+  </svg>
+  </div>
 </div>
 
 <script>
@@ -188,8 +205,8 @@ block body %}
       data: {
         imageBase64: dataURL,
       },
-    }).done(function () {
-      console.log("Sent canvas image to server");
+    }).done(function (data) {
+      insertLetter(String(data).toUpperCase());
     });
   }
   function createCanvas(width, height) {
@@ -203,7 +220,7 @@ block body %}
     // to the parent element, and returns the reference to
     // the newly created canvas element
 
-    function init(container, width, height, fillColor) {
+    function init(container, fillColor) {
       var canvas = createCanvas(width, height);
       var ctx = canvas.context;
       // define a custom fillCircle method
@@ -227,7 +244,7 @@ block body %}
         }
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-        var radius = 40; // or whatever
+        var radius = 30; // or whatever
         var fillColor;
         if (eraserActive) {
           fillColor = "#ffffff";
@@ -245,7 +262,7 @@ block body %}
     }
 
     var container = document.getElementById("canvas_div");
-    init(container, 500, 500, "#ffffff");
+    init(container, "#ffffff");
   })();
 </script>
 {% endblock body %}
