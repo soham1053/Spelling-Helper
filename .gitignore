@@ -11,3 +11,5 @@ dev.txt
 letters_model/
 
 .vsls.json
+
+database.sqlite
