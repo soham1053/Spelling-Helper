@@ -4,7 +4,7 @@ from PIL import Image
 import base64
 import re
 import numpy as np
-from flask import request
+from flask import request, session
 import cv2
 from tensorflow.keras.models import load_model
 

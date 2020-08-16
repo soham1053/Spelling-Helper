@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Your Grade!
+{% endblock title %}
+{% block body %}
+<div class="container-sm">
+	<div class="text-center">
+		<h1>You scored a {{grade}} percent!</h1>
+		<hr>
+		<h2>Your spelling was {{user_word}}</h2>
+		<h2>The correct spelling was {{word}}</h2>
+		<hr>
+		<a href="{{url_for('practice')}}">Try another word</a>
+	</div>
+</div>
+{% endblock body %}

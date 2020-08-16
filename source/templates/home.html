@@ -4,8 +4,17 @@ Spelling App
 {% endblock title %}
 {% block body %}
 <h1>Spelling App</h1>
+<br>
 <p>Welcome to the Spelling Tutor app!</p>
 <p>In this app, you can learn spelling and handwriting.</p>
-<p>If you have not already, please create an acccount <a href="signup">here</a>.</p>
-<p>If you already have an account, you can login <a href="login">here</a>.</p>
+<p>If you have not already, please create an acccount <a href="{{url_for('signup')}}">here</a>.</p>
+<p>If you already have an account, you can login <a href="{{url_for('login')}}">here</a>.</p>
+<hr>
+<h3>This project was made by</h3>
+<ul>
+	<li>Niels Voss</li>
+	<li>Satvik Reddy</li>
+	<li>Soham Patil</li>
+</ul>
+<p>Source code on Github: <a href="https://github.com/snowham/Spelling-Helper">snowham/Spelling-Helper</a></p>
 {% endblock body %}
