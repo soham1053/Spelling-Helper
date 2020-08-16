@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model 
 
 img = cv2.imread('temp.png')
 res = cv2.resize(img, dsize=(28, 28))
